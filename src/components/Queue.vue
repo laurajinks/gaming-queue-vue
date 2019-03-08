@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="gameList">
     <div v-for="game in gameList">
       <Game
         :key="game.id"
