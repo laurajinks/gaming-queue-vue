@@ -31,6 +31,7 @@
 </template>;
 
 <script>
+import axios from "axios";
 import NoteInput from "./NoteInput";
 import Description from "./Description";
 const server = "http://localhost:8081";
@@ -62,8 +63,12 @@ export default {
     toggleDescription: function() {
       this.showDescription = !this.showDescription;
     },
-    completeGame: function() {},
-    returnToQueue: function() {}
+    completeGame: function() {
+      axios.put(`${server}/api/gameStatus/${this.id}`);
+    },
+    returnToQueue: function() {
+      axios.put(`${server}/api/completedGameStatus/${this.id}`);
+    }
   }
 };
 </script>;
