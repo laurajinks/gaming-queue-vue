@@ -1,7 +1,16 @@
 <template>
-  <nav>
-    <router-link to="/">Queue</router-link>
-    <router-link to="/completed">Completed</router-link>
+  <nav class="header">
+    <router-link to="/" class="appTitle">
+      <h1>Queue</h1>
+    </router-link>
+    <ul class="headerLinks">
+      <router-link to="/" class="headerListItem">
+        <l1>Queue</l1>
+      </router-link>
+      <router-link to="/completed" class="headerListItem">
+        <li>Completed</li>
+      </router-link>
+    </ul>
   </nav>
 </template>
 

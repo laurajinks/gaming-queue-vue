@@ -1,5 +1,10 @@
 <template>
   <div class="gameList">
+    <div class="addBtnContainer">
+      <router-link to="/search">
+        <button class="addBtn">Add New Game</button>
+      </router-link>
+    </div>
     <div v-for="game in gameList">
       <Game
         :key="game.id"

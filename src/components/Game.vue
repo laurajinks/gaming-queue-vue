@@ -1,33 +1,35 @@
 <template>
-  <div class="gameContainer">
-    <Description
-      v-if="showDescription"
-      :description="description"
-      :toggleDescription="toggleDescription"
-      :guid="guid"
-    />
-    <button @click="deleteGame" class="deleteBtn">X</button>
-    <div class="gameBody">
-      <img class="coverArt" :src="img" :alt="title" @click="toggleDescription">
-      <h2 class="gameTitle">{{ title }}</h2>
-      <br>
-      <p class="notes">Notes: {{ notes }}</p>
-    </div>
-    <div class="gameFooter">
-      <button class="editNoteBtn" v-if="displayEditBtn" @click="toggleEdit">Edit Note</button>
-      <NoteInput
-        v-if="showEdit"
-        :toggleEdit="toggleEdit"
-        :id="id"
-        :notes="notes"
-        :toggleRefresh="toggleRefresh"
+  <transition name="open">
+    <div class="gameContainer">
+      <Description
+        v-if="showDescription"
+        :description="description"
+        :toggleDescription="toggleDescription"
+        :guid="guid"
       />
-      <br>
-      <button v-if="queue" @click="completeGame" class="moveBtn">Game Completed</button>
-      
-      <button v-if="!queue" @click="returnToQueue" class="moveBtn">Return to Queue</button>
+      <button @click="deleteGame" class="deleteBtn">X</button>
+      <div class="gameBody">
+        <img class="coverArt" :src="img" :alt="title" @click="toggleDescription">
+        <h2 class="gameTitle">{{ title }}</h2>
+        <br>
+        <p class="notes">Notes: {{ notes }}</p>
+      </div>
+      <div class="gameFooter">
+        <button class="editNoteBtn" v-if="displayEditBtn" @click="toggleEdit">Edit Note</button>
+        <NoteInput
+          v-if="showEdit"
+          :toggleEdit="toggleEdit"
+          :id="id"
+          :notes="notes"
+          :toggleRefresh="toggleRefresh"
+        />
+        <br>
+        <button v-if="queue" @click="completeGame" class="moveBtn">Game Completed</button>
+        
+        <button v-if="!queue" @click="returnToQueue" class="moveBtn">Return to Queue</button>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>;
 
 <script>
@@ -71,4 +73,26 @@ export default {
     }
   }
 };
-</script>;
+</script>
+
+<style>
+.open-enter-active {
+  animation: fade-in 0.3s;
+}
+
+.open-leave-active {
+  animation: fade-in 0.3s reverse;
+}
+
+@keyframes fade-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+</style>
