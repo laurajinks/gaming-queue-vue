@@ -1,7 +1,14 @@
 <template>
   <div class="gameContainer">
+    <Description
+      v-if="showDescription"
+      :description="description"
+      :toggleDescription="toggleDescription"
+      :guid="guid"
+    />
+    <button @click="deleteGame" class="deleteBtn">X</button>
     <div class="gameBody">
-      <img class="coverArt" :src="img" :alt="title">
+      <img class="coverArt" :src="img" :alt="title" @click="toggleDescription">
       <h2 class="gameTitle">{{ title }}</h2>
       <br>
       <p class="notes">Notes: {{ notes }}</p>
@@ -25,19 +32,22 @@
 
 <script>
 import NoteInput from "./NoteInput";
+import Description from "./Description";
 const server = "http://localhost:8081";
 
 export default {
   name: "Game",
   props: ["id", "queue", "guid", "title", "img", "description", "notes"],
   components: {
-    NoteInput
+    NoteInput,
+    Description
   },
 
   data() {
     return {
       displayEditBtn: true,
-      showEdit: false
+      showEdit: false,
+      showDescription: false
     };
   },
 
@@ -48,6 +58,9 @@ export default {
     toggleEdit: function() {
       this.displayEditBtn = !this.displayEditBtn;
       this.showEdit = !this.showEdit;
+    },
+    toggleDescription: function() {
+      this.showDescription = !this.showDescription;
     },
     completeGame: function() {},
     returnToQueue: function() {}
