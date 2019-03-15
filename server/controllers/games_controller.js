@@ -41,7 +41,7 @@ module.exports = {
                         id: result.id,
                         guid: result.guid,
                         img: result.image.original_url,
-                        description: result.description,
+                        description: result.deck,
                         notes: "",
                         queue: true
                     };
@@ -59,8 +59,8 @@ module.exports = {
         req.app
             .get("db")
             .add_game(req.body)
-            .then(() => {
-                res.status(200);
+            .then(response => {
+                res.status(200).json(response);
             })
             .catch(err => console.log(err));
     },

@@ -9,7 +9,7 @@
           <input v-model="input" class="searchInput" type="text" placeholder="Enter Game Title">
         </form>
       </div>
-      <div v-for="result in resultList">
+      <div v-for="result in resultList" :key="result.id">
         <Result
           :key="result.key"
           :id="result.id"

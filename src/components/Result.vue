@@ -1,13 +1,13 @@
 <template>
-  <div class="resultBox">
-    <div class="result">
-      <img class="resultThumb" :src="img" :alt="title">
-      <p class="resultTitle">{{ title }}</p>
-      <router-link to="/">
+  <transition name="open">
+    <div class="resultBox">
+      <div class="result">
+        <img class="resultThumb" :src="img" :alt="title">
+        <p class="resultTitle">{{ title }}</p>
         <button class="addNewBtn" @click="addGame">+</button>
-      </router-link>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -28,8 +28,9 @@ export default {
         description: this.description,
         queue: this.queue
       };
+      const vm = this;
       axios.post(`${server}/api/games`, game).then(() => {
-        props.history.push("/");
+        vm.$router.push("/");
       });
     }
   }

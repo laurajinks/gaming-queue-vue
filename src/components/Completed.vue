@@ -1,6 +1,6 @@
 <template>
   <div class="gameList">
-    <div v-for="game in gameList">
+    <div v-for="game in gameList" :key="game.id">
       <Game
         :key="game.id"
         :id="game.id"

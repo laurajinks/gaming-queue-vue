@@ -452,7 +452,7 @@ button {
   position: absolute;
   top: -5px;
   right: -5px;
-  z-index: 2;
+  z-index: 4;
   margin: 10px;
   border: none;
   background: none;
@@ -464,8 +464,24 @@ button {
     1px 1px 0 #f4f4f9;
 }
 
+.deleteHover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #a72608;
+  z-index: 3;
+  border-radius: 20px;
+  display: none;
+}
+
 .deleteBtn:hover {
   color: #a72608;
+}
+
+.deleteBtn:hover ~ .deleteHover {
+  display: flex;
+  transition: 0.2s;
+  opacity: 0.3;
 }
 
 .editNoteBtn,
@@ -529,5 +545,25 @@ button {
 
 .closeDescriptionBtn:hover {
   color: #a72608;
+}
+
+.open-enter-active {
+  animation: fade-in 0.3s;
+}
+
+.open-leave-active {
+  animation: fade-in 0.3s reverse;
+}
+
+@keyframes fade-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 </style>

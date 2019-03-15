@@ -8,6 +8,7 @@
         :guid="guid"
       />
       <button @click="deleteGame" class="deleteBtn">X</button>
+      <div class="deleteHover"></div>
       <div class="gameBody">
         <img class="coverArt" :src="img" :alt="title" @click="toggleDescription">
         <h2 class="gameTitle">{{ title }}</h2>
@@ -75,24 +76,4 @@ export default {
 };
 </script>
 
-<style>
-.open-enter-active {
-  animation: fade-in 0.3s;
-}
 
-.open-leave-active {
-  animation: fade-in 0.3s reverse;
-}
-
-@keyframes fade-in {
-  0% {
-    transform: scale(0);
-    opacity: 0;
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-</style>

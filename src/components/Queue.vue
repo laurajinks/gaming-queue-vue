@@ -5,7 +5,7 @@
         <button class="addBtn">Add New Game</button>
       </router-link>
     </div>
-    <div v-for="game in gameList">
+    <div v-for="game in gameList" :key="game.id">
       <Game
         :key="game.id"
         :id="game.id"
@@ -35,11 +35,15 @@ export default {
       gameList: []
     };
   },
-  methods: {},
-  mounted: function() {
-    axios
-      .get(`${server}/api/games`)
-      .then(response => (this.gameList = response.data));
+  methods: {
+    getGames: function() {
+      axios
+        .get(`${server}/api/games`)
+        .then(response => (this.gameList = response.data));
+    }
+  },
+  beforeMount: function() {
+    this.getGames();
   }
 };
 </script>
